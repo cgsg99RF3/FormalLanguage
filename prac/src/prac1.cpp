@@ -18,15 +18,15 @@ size_t GetLen(const std::string& regex, char x, int k) {
           throw std::invalid_argument("Invalid notation");
         }
 
-        std::vector<size_t> elem1 = rpn.top();
+        std::vector<size_t> elem = rpn.top();
         rpn.pop();
 
-        std::vector<size_t> dp(elem1);
+        std::vector<size_t> dp(elem);
         dp[0] = 0;
         for (size_t j = 1; j < k + 1; ++j) {
-          if (elem1[j] == j) {
+          if (elem[j] == j) {
             for (size_t t = 0; t * j < k + 1; ++t)
-              dp[j * t] = std::min(dp[j * t], elem1[j] * t);
+              dp[j * t] = std::min(dp[j * t], elem[j] * t);
           }
         }
 
@@ -36,14 +36,14 @@ size_t GetLen(const std::string& regex, char x, int k) {
           throw std::invalid_argument("Invalid expression");
         }
 
-        std::vector<size_t> elem1 = rpn.top();
+        std::vector<size_t> left = rpn.top();
         rpn.pop();
-        std::vector<size_t> elem2 = rpn.top();
+        std::vector<size_t> right = rpn.top();
         rpn.pop();
 
         std::vector<size_t> dp(k + 1, INF);
         for (size_t j = 0; j < k + 1; ++j) {
-          dp[j] = std::min(elem1[j], elem2[j]);
+          dp[j] = std::min(left[j], right[j]);
         }
 
         rpn.push(dp);
@@ -52,21 +52,21 @@ size_t GetLen(const std::string& regex, char x, int k) {
           throw std::invalid_argument("Invalid expression");
         }
 
-        std::vector<size_t> elem1 = rpn.top();
+        std::vector<size_t> left = rpn.top();
         rpn.pop();
-        std::vector<size_t> elem2 = rpn.top();
+        std::vector<size_t> right = rpn.top();
         rpn.pop();
 
         std::vector<size_t> dp(k + 1, INF);
         for (size_t j = 0; j < k + 1; ++j) {
-          if (elem2[j] != INF && elem1[0] != INF) {
-            dp[j] = elem2[j] + elem1[0];
+          if (right[j] != INF && left[0] != INF) {
+            dp[j] = right[j] + left[0];
           }
           for (size_t t = 0; t <= j; ++t) {
-            if (elem2[j - t] != INF &&
-                elem1[t] != INF &&
-                elem2[j - t] == j - t) {
-              dp[j] = std::min(dp[j], elem1[t] + elem2[j - t]);
+            if (right[j - t] != INF &&
+                left[t] != INF &&
+                right[j - t] == j - t) {
+              dp[j] = std::min(dp[j], left[t] + right[j - t]);
             }
           }
         }
