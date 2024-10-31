@@ -3,7 +3,7 @@
 #include <set>
 #include <vector>
 
-#include "../include/prac1.h"
+#include "prac1.h"
 
 size_t GetLen(const std::string& regex, char x, int k) {
   std::stack<std::vector<size_t>> rpn;
