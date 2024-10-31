@@ -3,25 +3,25 @@
 #include "../include/prac1.h"
 
 TEST(Prac, SimpleTest) {
-  for (char ch : {'a', 'b', 'c'}) {
-    EXPECT_EQ(GetLen(std::string({ch}), ch, 1), 1);
+  for (char sym : {'a', 'b', 'c'}) {
+    EXPECT_EQ(GetLen(std::string({sym}), sym, 1), 1);
   }
 }
 
 TEST(Prac, PlusTest) {
-  for (char ch : {'a', 'b', 'c'}) {
-    EXPECT_EQ(GetLen(std::string("abc++"), ch, 1), 1);
+  for (char sym : {'a', 'b', 'c'}) {
+    EXPECT_EQ(GetLen(std::string("abc++"), sym, 1), 1);
   }
 }
 
 TEST(Prac, StarTest) {
-  for (char ch : {'a', 'b', 'c'}) {
+  for (char sym : {'a', 'b', 'c'}) {
     std::string str;
-    str.push_back(ch);
+    str.push_back(sym);
     str.push_back('*');
-    const size_t MX = 1e2;
-    for (size_t i = 0; i < MX; ++i) {
-      EXPECT_EQ(GetLen(str, ch, i), i);
+    const size_t PREF_LEN = 1e2;
+    for (size_t i = 0; i < PREF_LEN; ++i) {
+      EXPECT_EQ(GetLen(str, sym, i), i);
     }
   }
 }
