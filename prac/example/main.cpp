@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/prac1.h"
+#include "prac1.h"
 
 int main() {
   std::string regex;
