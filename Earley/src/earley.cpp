@@ -56,7 +56,7 @@ void fit_for_test(Grammar& grammar, const std::string& gram_str) {
     if (el != ' ') {
       std::string cur;
       cur += el;
-      if (!std::islower(static_cast<unsigned char>(el))) {
+      if (std::isupper(static_cast<unsigned char>(el))) {
         throw std::invalid_argument("Invalid Terminal symbol");
       }
       grammar.term.insert(cur);
@@ -143,7 +143,7 @@ void fit(Grammar& grammar) {
     if (el != ' ') {
       std::string cur;
       cur += el;
-      if (!std::islower(static_cast<unsigned char>(el))) {
+      if (std::isupper(static_cast<unsigned char>(el))) {
         throw std::invalid_argument("Invalid Terminal symbol");
       }
       grammar.term.insert(cur);
